@@ -7,6 +7,7 @@ on:
   push:
     branches:
     - master
+    - develop
       
 env:
   #registry: docker.io
@@ -33,15 +34,6 @@ jobs:
         run: | 
           echo "COMMIT_ID=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
           echo "version=${{ steps.dotenv.outputs.version }}.`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-
-
-      #- name: "docker - build"
-      #  run: |
-      #    env
-      #    docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-      #    docker buildx create --name builder --driver docker-container --use
-      #    docker buildx inspect --bootstrap
-      #    docker buildx build --platform linux/amd64 -t ${{env.imageRepository}}:${{env.version}}-amd64 --build-arg JAR=target/${{ steps.dotenv.outputs.artifactId }}-${{ steps.dotenv.outputs.version }}.jar -f docker/Dockerfile .
 
       - name: tools - docker - login
         if: github.event_name == 'push'
