@@ -10,7 +10,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: hello-kubernetes.app.jhidalgo3.me
+  - host: hello-kubernetes.k8s.jhidalgo3.me
     http:
       paths:
       - backend:

@@ -1,4 +1,4 @@
-# Workflow name
+#Workflow name
 name: CI/CD Pipeline
 on:
   #Manually trigger workflow runs
@@ -7,6 +7,7 @@ on:
   push:
     branches:
     - master
+    - develop
       
 env:
   #registry: docker.io
@@ -45,7 +46,7 @@ jobs:
       - name: "docker - build and  push"
         if: github.event_name == 'push'
         run: |
-          docker buildx build --push --platform linux/amd64 -t ${{env.imageRepository}}:${{env.version}}-amd64  --build-arg JAR=target/${{ steps.dotenv.outputs.artifactId }}-${{ steps.dotenv.outputs.version }}.jar -f docker/Dockerfile .
+          docker buildx build --push --platform linux/amd64 -t ${{env.imageRepository}}:${{env.version}}-amd64 -f Dockerfile .
           docker manifest create  ${{env.imageRepository}}:${{env.version}} ${{env.imageRepository}}:${{env.version}}-amd64
           docker manifest inspect ${{env.imageRepository}}:${{env.version}}
           docker manifest push    ${{env.imageRepository}}:${{env.version}}
