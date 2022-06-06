@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "helm-chart.labels" $ | nindent 4 }}
+  name: {{ include "helm-chart.fullname" $ }}
+data:
+{{ toYaml .Values.configs | indent 2 }}
