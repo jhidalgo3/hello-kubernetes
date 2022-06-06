@@ -21,3 +21,16 @@ version: 0.1.0
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: 1.16.0
+
+icon: https://jhidalgo3.github.io/helm-charts/logos/nodejs-logo.png
+keywords:
+- nodejs
+- kubernetes
+- deploy
+- hello
+home: https://github.com/jhidalgo3/
+sources:
+- https://github.com/jhidalgo3/hello-kubernetes
+maintainers:
+- name: Jose Maria Hidalgo
+  email: jhidalgo3@gmail.com
