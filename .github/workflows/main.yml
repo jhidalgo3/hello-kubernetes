@@ -33,7 +33,13 @@ jobs:
       - name: Add COMMIT_ID env property with commit short sha
         run: | 
           echo "COMMIT_ID=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-          echo "version=${{ steps.dotenv.outputs.version }}.`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          checkSnapshot=`echo "${{ steps.dotenv.outputs.version }}" | cut -d'-' -f2`
+          if [[ "$checkSnapshot" = "SNAPSHOT" ]]; then
+            echo "version=${{ steps.dotenv.outputs.version }}.`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          else
+            echo "version=${{ steps.dotenv.outputs.version }}" >> $GITHUB_ENV
+          fi
+
 
       - name: tools - docker - login
         if: github.event_name == 'push'
