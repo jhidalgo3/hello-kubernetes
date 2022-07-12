@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: hello-kubernetes
-        image: jhidalgo3/hello-kubernetes:3.0
+        image: jhidalgo3/hello-kubernetes:1.0.0.015e9772
         ports:
         - name: http
           containerPort: 8080
