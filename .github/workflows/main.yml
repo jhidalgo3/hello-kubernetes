@@ -57,7 +57,7 @@ jobs:
           cp .env .artifacts/helm
 
       - name: "artifacts - upload - helm chart"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: helm
           path: .artifacts/helm
