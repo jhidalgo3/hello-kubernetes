@@ -54,7 +54,7 @@ jobs:
       - name: helm - template chart
         run: | 
           helm package --destination .artifacts/helm --version ${{steps.dotenv.outputs.CHART_VERSION}} --app-version ${{env.version}} helm-chart
-          cp .env .artifacts/helm
+          cp .env .artifacts/helm/env
           ls -la .artifacts/helm
 
       - name: "artifacts - upload - helm chart"
@@ -85,11 +85,15 @@ jobs:
           name: helm
           path: .artifacts/helm
 
+      - name: ls - .artifacts/helm
+        run: | 
+           ls -la .artifacts/helm
+
       - name: Dotenv Action
         id: dotenv
         uses: falti/dotenv-action@v1.1.4
         with:
-          path: .artifacts/helm/.env
+          path: .artifacts/helm/env
 
       - name: github - checkout - helm-charts
         uses: actions/checkout@v4
