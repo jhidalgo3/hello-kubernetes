@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:20-alpine
 
 ARG IMAGE_CREATE_DATE
 ARG IMAGE_VERSION
