@@ -23,7 +23,7 @@ jobs:
     #Job's steps
     steps:
       #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Dotenv Action
         id: dotenv
@@ -55,6 +55,7 @@ jobs:
         run: | 
           helm package --destination .artifacts/helm --version ${{steps.dotenv.outputs.CHART_VERSION}} --app-version ${{env.version}} helm-chart
           cp .env .artifacts/helm
+          ls -la .artifacts/helm
 
       - name: "artifacts - upload - helm chart"
         uses: actions/upload-artifact@v4
@@ -91,7 +92,7 @@ jobs:
           path: .artifacts/helm/.env
 
       - name: github - checkout - helm-charts
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: jhidalgo3/helm-charts
           token:  ${{ secrets.ES_GITHUB_PAT }}
