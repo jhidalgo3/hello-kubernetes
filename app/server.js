@@ -5,6 +5,9 @@ var app = express();
 var os = require("os");
 var morgan  = require('morgan');
 
+// Disable X-Powered-By header to prevent information disclosure
+app.disable('x-powered-by');
+
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.use(express.static('static'));

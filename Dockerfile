@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:24-alpine
 
 ARG IMAGE_CREATE_DATE
 ARG IMAGE_VERSION
@@ -23,7 +23,8 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY app/package.json /usr/src/app/
-RUN npm install
+# Install dependencies without running postinstall scripts (e.g., for security or compatibility reasons)
+RUN npm install --ignore-scripts
 
 # Bundle app source
 COPY ./app /usr/src/app
